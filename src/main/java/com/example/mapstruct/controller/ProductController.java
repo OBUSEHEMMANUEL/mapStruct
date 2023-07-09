@@ -22,16 +22,22 @@ public class ProductController {
     @Autowired
     private ProductRepository repository;
 @PostMapping("/product")
-    public ResponseEntity<Product> save(@RequestBody ProductDto productDto) {
+    public ResponseEntity<?> save(@RequestBody ProductDto productDto) {
         return new ResponseEntity<>(repository.save(productMapper.dtoToModel(productDto)), HttpStatus.CREATED);
     }
 @GetMapping("/products")
-    public  ResponseEntity<List<ProductDto>> findAll(){
+    public  ResponseEntity<?> findAll(){
         return  new ResponseEntity<>(productMapper.modelToDtos(repository.findAll()),HttpStatus.OK);
     }
 
     @GetMapping("/products/{id}")
-    public  ResponseEntity<ProductDto> findById(@PathVariable(value = "id") int id){
+    public  ResponseEntity<?> findById(@PathVariable(value = "id") int id){
         return  new ResponseEntity<>(productMapper.modelToDto(repository.findById(id).get()),HttpStatus.OK);
+    }
+    @DeleteMapping("/products/{id}")
+    public  ResponseEntity<?> deleteById(@PathVariable(value = "id") int id){
+      var foundProduct =  productMapper.modelToDto(repository.findById(id).get());
+        repository.deleteById(foundProduct.getId());
+        return  new ResponseEntity<>(HttpStatus.OK);
     }
 }

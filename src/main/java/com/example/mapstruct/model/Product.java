@@ -1,7 +1,8 @@
 package com.example.mapstruct.model;
 
 import jakarta.persistence.*;
-import lombok.*;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.List;
 
@@ -11,13 +12,11 @@ import java.util.List;
 @Entity
 public class Product {
     @Id
+  @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String name;
-    private String desc;
+    private String description;
     private int quantity;
     private long price;
-    private String  itemId;
 
-@OneToMany
-    private List<Item> items;
 }
