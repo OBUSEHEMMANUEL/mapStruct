@@ -4,9 +4,7 @@ import com.example.mapstruct.dto.ProductDto;
 import com.example.mapstruct.model.Product;
 import org.mapstruct.InheritInverseConfiguration;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 import org.mapstruct.NullValuePropertyMappingStrategy;
-import org.mapstruct.factory.Mappers;
 
 import java.util.List;
 import java.util.UUID;
